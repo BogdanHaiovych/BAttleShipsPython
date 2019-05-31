@@ -4,7 +4,7 @@ import GameFunc as gf
 from Cell import Cell, Field
 from Buttons import *
 from Ship import Ship
-from copy import deepcopy
+from copy import deepcopy, copy
 from AI import AI
 
 
@@ -34,7 +34,7 @@ def play():
 
     # Создает 4 кнопки выбора кораблей (Если игра не началась - их не показывает)
 
-    addship_btns = [] # Массив этих кнопок
+    addship_btns = []  # Массив этих кнопок
     ship = Aircraft(screen, (75, 625))
     addship_btns.append(ship)
     ship = Battleship(screen, (425, 625))
@@ -54,13 +54,14 @@ def play():
     start_btn = StartGame(screen, 'Start battle')
     info = Information(screen, 'Choose a ship and place it')
     # создает Искусственный Интеллект (англ - AI) - моего противника
-    ai_view = deepcopy(myfield) # вид ИИ на мое поле (как он его видет)
+    ai_view = copy(myfield)  # вид ИИ на мое поле (как он его видет)
     ai = AI(screen, ai_view)
     while True:
         # доступ к событиям (нажатие кнопки, перемещение мыши)
-        gf.Events(screen, game_set, play_btn, myfield, enemyfield, addship_btns, myfleet, enemyfleet, start_btn, ai, info)
+        gf.Events(screen, game_set, play_btn, myfield, enemyfield,
+                  addship_btns, myfleet, enemyfleet, start_btn, ai, info)
         # стандартная функция при работе игры
         pygame.display.flip()
 
-play()
 
+play()
