@@ -42,7 +42,7 @@ class Play(Button):     # Кнопка "Играть"
     # отрисовка кнопки
 
     def play_draw(self):
-        gamebg =  pygame.image.load('gallery/bg.jpg')  # Фон (звёзды)
+        gamebg = pygame.image.load('gallery/bg.jpg')  # Фон (звёзды)
         self.screen.blit(gamebg, (0, 0))
         pygame.draw.circle(self.screen, self.color, self.screen_rect.center, self.radius)
         pygame.draw.circle(self.screen, self.text_color, self.screen_rect.center, self.radius - 10, 4)

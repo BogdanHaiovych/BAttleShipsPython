@@ -1,17 +1,16 @@
 import pygame
-from Settings import settings
+from Settings import Settings
 import GameFunc as gf
 from Cell import Cell, Field
 from Buttons import *
 from Ship import Ship
-from copy import deepcopy, copy
-from AI import AI
+from copy import deepcopy
 
 
 def play():
     pygame.init()
     pygame.display.set_caption('Battleships')
-    game_set = settings()  # Настройки игры
+    game_set = Settings()  # Настройки игры
     screen = pygame.display.set_mode((game_set.screen_w, game_set.screen_h))  # Рабочее окно
 
     # Создает мое поле и поле противника
@@ -53,13 +52,11 @@ def play():
     play_btn.play_draw()
     start_btn = StartGame(screen, 'Start battle')
     info = Information(screen, 'Choose a ship and place it')
-    # создает Искусственный Интеллект (англ - AI) - моего противника
-    ai_view = copy(myfield)  # вид ИИ на мое поле (как он его видет)
-    ai = AI(screen, ai_view)
     while True:
         # доступ к событиям (нажатие кнопки, перемещение мыши)
-        gf.Events(screen, game_set, play_btn, myfield, enemyfield,
-                  addship_btns, myfleet, enemyfleet, start_btn, ai, info)
+        gf.Events(
+                    screen, game_set, play_btn, myfield, enemyfield,
+                    addship_btns, myfleet, enemyfleet, start_btn, info)
         # стандартная функция при работе игры
         pygame.display.flip()
 

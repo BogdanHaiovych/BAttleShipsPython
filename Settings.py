@@ -2,7 +2,7 @@ import pygame
 
 
 # настройки игры
-class settings:
+class Settings:
     def __init__(self):
         # фон и экран
         self.screen_w = 1200
@@ -10,4 +10,4 @@ class settings:
         self.bg = pygame.image.load('gallery/bg.jpg')
         # процесс битвы
         self.game_started = False   # если битва началась - True
-        self.myturn = True
+        self.my_turn = False

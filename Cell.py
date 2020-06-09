@@ -9,7 +9,7 @@ class Field:
         self.data = []              # здесь хранятся клетки
         self.rect = pygame.Rect(self.pos[0], self.pos[1], self.side * 50, self.side * 50)
 
-    def draw_field(self,screen):
+    def draw_field(self, screen):
         for i in self.data:
             for j in i:
                 j.draw()
@@ -20,9 +20,10 @@ class Field:
                     j.ship_start[1].draw(screen)
         '''
 
+
 # класс клетка поля
 class Cell:
-    def __init__(self,screen,x,y):
+    def __init__(self, screen, x, y):
         self.screen = screen
 
         self.pos = (x+2, y+2)
@@ -31,20 +32,19 @@ class Cell:
         self.rect = pygame.Rect(self.pos[0], self.pos[1], self.side, self.side)
         self.rect.bottomleft = (self.pos[0], self.pos[1] + 50)
 
-        #Показывает, обстреляна ли клетка
-        #Если сюда уже стреляли - False
+        # Показывает, обстреляна ли клетка
+        # Если сюда уже стреляли - False
         self.alive = True
 
-        #Показывает, есть ли здесь корабль
+        # Показывает, есть ли здесь корабль
         self.ship_is_here = False
         self.ship_start = [False, None]
 
     def draw(self):
-        #Рисует клетку
+        # Рисует клетку
         if not self.alive and self.ship_is_here:
             pygame.draw.rect(self.screen, (196, 30, 58), self.rect, 1)
         elif not self.alive:
             pygame.draw.rect(self.screen, (0, 255, 255), self.rect, 1)
         elif self.alive:
             pygame.draw.rect(self.screen, self.btn_color, self.rect, 1)
-
